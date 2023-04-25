@@ -1,0 +1,49 @@
+****************************VALID PARANTHESIS USING THE STACK IMPLEMENTATION**************************************************************
+
+import java.util.*;
+class Valid
+{
+    public static boolean isValid(String s)
+    {
+        Stack<Character>st=new Stack<>();
+        for(char ch:s.toCharArray())
+        {
+            if(ch=='(' || ch=='{' || ch=='[')
+            {
+               st.push(ch); 
+            }
+            else if(ch=='}' && !st.isEmpty() && st.peek()=='{')
+            {
+                st.pop();
+            }
+             else if(ch==']' && !st.isEmpty() && st.peek()=='[')
+            {
+                st.pop();
+            }
+             else if(ch==')' && !st.isEmpty() && st.peek()=='(')
+            {
+                st.pop();
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return st.isEmpty();
+    }
+    
+    
+    
+    
+    
+    
+    
+    public static void main(String args[])
+    {
+        
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter the String to be checked");
+        String str=sc.next();
+        System.out.println(isValid(str));
+    }
+}
